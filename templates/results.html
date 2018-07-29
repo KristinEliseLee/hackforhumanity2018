@@ -7,9 +7,70 @@
 {% block body %}
 
 
-{% for key in session %}
-{{key}} = {{session[key]}}
-<br>
-{% endfor %}
 
-{% endblock %}
+<h3>Your Immigration Status</h3>
+<p id="status">You currently have {{session["status"]}}. Find out if you {% if session["status"] == "a green card"%}can become a U.S. citizen<a href="https://www.usa.gov/become-us-citizen"> here.</a>
+{% elif session["status"] == "a visa"%}can get a green card<a href="https://www.uscis.gov/greencard/green-card-processes-procedures"> here.</a>
+{% elif session["status"] == "a work permit"%}can
+get a visa<a href="https://www.uscis.gov/greencard/green-card-processes-procedures"> here.</a>
+{% elif session[""] == "no current immigration status"%}may be eligible to get a green card, visa, or work permit<a href="https://www.uscis.gov/working-united-states/information-employers-employees/information-employers-and-employees"> here.</a>
+{% endif %}
+</p>
+
+{% if session['doc']|length > 1%}
+<h3>Your documents</h3>
+<p>
+You currently have a
+
+{% for doc in session['doc'][:-1]%} {{doc}},{% endfor%} and 
+{{session['doc'][-1]}}. These are proof of your identity. Keep them in a safe place and let your family members know where you’ve stored them in case of emergencies.</p>
+{% elif session['doc']|length == 1%}
+<h3>Your documents</h3>
+<p>
+You currently have 
+{{session['doc'][0]}}.This is proof of your identity. Keep it in a safe place and let your family members know where you’ve stored it in case of emergencies.
+{%endif%}
+</p>
+{% if session['kid'] == 'yes'%}
+<h3>Your child's care</h3>
+<p>
+<h6> In case you are not available to care for your children, you want to make sure a trusted adult can take care of them in your absence. </h6>
+{% if session['kidcare'] == 'yes' %}You’ve identified a trusted adult who can care for your children in emergencies.
+
+{% else %} Identify a trusted adult (ideally a relative) to care for your children in case of emergencies. 
+
+{%endif%}
+In order for them to make crucial school and medical-related decisions for your children, they must print and sign this <a href="https://www.lsc-sf.org/wp-content/uploads/2015/10/CAA-with-Instructions.pdf"> Authorized Caregiver Affidavit</a> and keep a copy for themselves. Also, give a copy of the signed Authorized Caregiver Affidavit to your children’s school(s) and healthcare provider.
+</p>
+
+{% if session['kidcit'] == 'yes'%}
+
+
+{%endif%}
+
+{%endif%}
+<h3>Your Rights</h3>
+<p class='important'>Everyone – both documented and undocumented persons – have rights in this country. Make sure you and your family members know of their right to remain silent and all of their other rights if ICE or the police come to your home, neighborhood or workplace</p>
+<a href="https://www.aclu.org/know-your-rights/what-do-if-youre-stopped-police-immigration-agents-or-fbi">KNOW YOUR RIGHTS: WHAT TO DO IF YOU'RE STOPPED BY POLICE, IMMIGRATION AGENTS OR THE FBI - ACLU</a>
+
+<h5>Inform Your Family and Emergency Contacts About How to Find You if You Are Detained by ICE</h5>
+<p>Family members can use the ICE Detainee Locator(https://locator.ice.gov/ols/homePage.do) Make sure they know your A-number if you have one
+</p>
+
+
+
+<h3> Forms </h3>
+<p>Emergency Numbers and Important Contact Information</p>
+    <ul>
+        <li><a href="">Family Contacts</a></li>
+
+        <li><a href="">Miscelaneous Contacts</a></li>
+    </ul>
+
+
+
+
+
+
+
+    {%endblock%}

@@ -59,7 +59,7 @@ def set_answer():
         session['kidcit'] = kidcit
         if kidcit == 'yes':
             return '5'
-        return '6'
+        return '7'
 
     def quest5():
         """what documents do they have for kids if they are US citizens?
@@ -100,6 +100,9 @@ def set_answer():
 
 @app.route('/results')
 def show_results():
+
+
+
    return render_template('results.html')
 
 
