@@ -1,24 +1,26 @@
-#quizbox {
+/*#quizbox {
 min-height: 200px;
 border-width: 5px;
 border-color: black;
 border-style: solid;
-}
+}*/
 
-#quizside{
+/*#quizside{
+border-width: 5px;
+border-color: black;
+border-style: solid;
+}*/
+
+/*#picside{
 border-width: 5px;
 border-color: black;
 border-style: solid;
 }
-
-#picside{
-border-width: 5px;
-border-color: black;
-border-style: solid;
-}
-
+*/
+html, body{height:100%; margin:0;padding:0}
+ 
 .whole-height{
-    min-height: 100%;
+  height:100%;
 }
 
 .noshow{
@@ -28,4 +30,13 @@ border-style: solid;
 img{
     max-width: 100%;
     height:auto;
+    margin-top:30%;
+}
+
+#quizbox{
+    margin-top:5%;
+}
+
+#pic{
+    position:relative;
 }

@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 
-{% block head %}
+{% block head %}<title>Results</title>
 
 {% endblock %}
 
 {% block body %}
+
+
 {% for key in session %}
 {{key}} = {{session[key]}}
 <br>
