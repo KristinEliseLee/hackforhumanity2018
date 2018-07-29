@@ -6,7 +6,8 @@
 
 {% block body %}
 {% for key in session %}
-{{key}} , {{session[key]}}
+{{key}} = {{session[key]}}
+<br>
 {% endfor %}
 
 {% endblock %}
