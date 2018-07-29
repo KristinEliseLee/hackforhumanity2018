@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+{% for key in session %}
+{{key}} , {{session[key]}}
+{% endfor %}
+
+{% endblock %}
