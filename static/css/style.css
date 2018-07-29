@@ -1,4 +1,31 @@
-#quiz {
-display:none;
-align-content: center;
+#quizbox {
+min-height: 200px;
+border-width: 5px;
+border-color: black;
+border-style: solid;
+}
+
+#quizside{
+border-width: 5px;
+border-color: black;
+border-style: solid;
+}
+
+#picside{
+border-width: 5px;
+border-color: black;
+border-style: solid;
+}
+
+.whole-height{
+    min-height: 100%;
+}
+
+.noshow{
+    display: none;
+}
+
+img{
+    max-width: 100%;
+    height:auto;
 }

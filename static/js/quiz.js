@@ -35,28 +35,36 @@ const questions = [
 ,
 
 `<h4> Do you have any children under age 18?</h4>
-<input type='radio' name='kids' value='yes' required>yes
-<input type='radio' name='kids' value='no' required>no
+<input type='radio' name='kid' value='yes' required>yes
+<input type='radio' name='kid' value='no' required>no
 <input type='hidden' name='questnum' value='3'>
 <input type='submit'>`
 ,
 
 `<h4> Is your child/children a U.S. citizen?</h4>
-<input type='radio' name='kidscit' value='yes' required>yes
-<input type='radio' name='kidscit' value='no' required>no
+<input type='radio' name='kidcit' value='yes' required>yes
+<input type='radio' name='kidcit' value='no' required>no
 <input type='hidden' name='questnum' value='4'>
 <input type='submit'>`
 
 ,
 `<h4> Do you have these documents for your children?</h4>
-<p>U.S. Passport:</p>
-<input type='radio' name='kids-pass' value='yes' required>yes
-<input type='radio' name='kids-pass' value='no' required>no
+<input type='checkbox' name='kiddoc' value='pass'>U.S. Passport
 <br>
-<p>U.S. Birth Certificate</p>
-<input type='radio' name='kids-cert' value='yes' required>yes
-<input type='radio' name='kids-cert' value='no' required>no
+<input type='checkbox' name='kiddoc' value='bc'>U.S. Birth Certificate
 <input type='hidden' name='questnum' value='5'>
+<input type='submit'>`
+,
+`<h4> Do you have a copy of registry of their birth?</h4>
+<input type='radio' name='kidreg' value='yes' required>yes
+<input type='radio' name='kidreg' value='no' required>no
+<input type='hidden' name='questnum' value='6'>
+<input type='submit'>`
+,
+`<h4>Is there an adult who can care for your child if you cannot?</h4>
+<input type='radio' name='kidcare' value='yes' required>yes
+<input type='radio' name='kidcare' value='no' required>no
+<input type='hidden' name='questnum' value='7'>
 <input type='submit'>`
 
 ];
@@ -71,6 +79,18 @@ function loadQuestion(num){
         window.location.replace("/results");
     }
     $('#pic').html("");
+    if (num < 2){
+        $('#picside').removeClass('noshow');
+        $('#quizbox').removeClass('col-9');
+        $('#quizbox').addClass('col-5');
+    }
+
+    else{
+        $('#picside').addClass('noshow')
+        $('#quizbox').addClass('col-9')
+        $('#quizbox').removeClass('col-5')
+    }
+
     $('#form').html(questions[num]);
     $(".showpic").on('click',showPic);
 }

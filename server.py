@@ -7,14 +7,14 @@ app.secret_key = 'totallysecret123'
 
 @app.route('/')
 def homepage():
-    return render_template('newpage.html')
+    return redirect('/quiz')
 
 
 @app.route('/quiz')
 def start_quiz():
     """"""
 
-    return render_template('quiz.html')
+    return render_template('newpage.html')
 
 
 @app.route("/setanswer")
@@ -23,6 +23,8 @@ def set_answer():
 
     
     def quest0():
+        """Immigration status: gc = greencard, v = visa, wp = work permit, no = none
+        """
         answer = request.args.get('status')
         session['status'] = answer
         if answer != 'no':
@@ -30,31 +32,57 @@ def set_answer():
         return '2'
 
     def quest1():
+        """Do they know their A-number, y/n"""
         answer = request.args.get('a-num')
         session['a-num'] = answer
         return '2'
 
     def quest2():
+        """What documents do they have? pass = passport, bc = birth certificate
+        ml  = marriage license, dl = driver's licence, ssc = social security or ITIN number
+        """
         doc = request.args.getlist('doc')
         session['doc'] = doc
         return '3'
 
     def quest3():
-        kids = request.args.get('kids')
-        session['kids'] = kids
-        if kids == 'yes':
+        """Any kids under age 18? y/n"""
+        kid = request.args.get('kid')
+        session['kid'] = kid
+        if kid == 'yes':
             return '4'
-        return '5'
+        return '12'
 
     def quest4():
-        kidscit = request.args.get('kidscit')
-        session['kidscit'] = kidscit
-        if kidscit == 'yes':
-            return '6'
-        return '5'
+        """Are they all US citizens y/n """
+        kidcit = request.args.get('kidcit')
+        session['kidcit'] = kidcit
+        if kidcit == 'yes':
+            return '5'
+        return '6'
 
     def quest5():
-        return '12'
+        """what documents do they have for kids if they are US citizens?
+        pass=passport, bc=US birth certificate
+
+        """
+        kiddoc = request.args.getlist('kiddoc')
+        session['kiddoc'] = kiddoc
+        return '7'
+
+    def quest6():
+        """if kid isn't a US citizen, do they have the registry of their birth
+        y/n
+        """
+        kidreg = request.args.get('kidreg')
+        session['kidreg'] = kidreg
+        return '7'
+
+    def quest7():
+        """An adult to care for kids, y/n"""
+        kidcare = request.args.get('kidcare')
+        session['kidcare'] = kidcare
+        return '8'
 
     quest_num_dict = {
     '0': quest0,
@@ -63,46 +91,11 @@ def set_answer():
     '3': quest3,
     '4': quest4,
     '5': quest5,
+    '6': quest6,
+    '7': quest7,
     }
 
     return quest_num_dict[questnum]()
-
-    # if questnum == '0':
-    #     answer = request.args.get('status')
-    #     session['status'] = answer
-    #     if answer != 'no':
-    #         return '1'
-    #     return '2'
-
-    # elif questnum =='1':
-    #     answer = request.args.get('a-num')
-    #     session['a-num'] = answer
-    #     return '2'
-
-    # elif questnum == '2':
-    #     doc = request.args.getlist('doc')
-    #     session['doc'] = doc
-    #     return '3'
-
-    # elif questnum == "3":
-    #     kids = request.args.getlist('kids')
-    #     session['kids'] = kids
-    #     if kids == 'yes':
-    #         return '4'
-    #     return '5'
-
-    # elif questnum == "4":
-    #     kids_cit = request.args.getlist('kids-cit')
-    #     session['kids-cit'] = kids_cit
-    #     if kids_cit == 'yes':
-    #         return '6'
-    #     return '5'
-
-    # elif questnum == '5':
-    #     pass
-
-
-    # return 0
 
 
 @app.route('/results')
